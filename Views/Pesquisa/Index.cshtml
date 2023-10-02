@@ -1,0 +1,78 @@
+﻿@model Questao_2.Models.ParamSearch
+
+@{
+    ViewData["Title"] = "Pesquisar Campeonatos";
+}
+
+<h1>Pesquisa Campeonatos</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Index">
+            <div class="row">
+                <div class="col-md-12">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="year" class="control-label"></label>
+                        <input asp-for="year" class="form-control" />
+                        <span asp-validation-for="year" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="team1" class="control-label"></label>
+                        <input asp-for="team1" class="form-control" />
+                        <span asp-validation-for="team1" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="team2" class="control-label"></label>
+                        <input asp-for="team2" class="form-control" />
+                        <span asp-validation-for="team2" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="page" class="control-label"></label>
+                        <input asp-for="page" class="form-control" />
+                        <span asp-validation-for="page" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="submit" value="Pesquisar" class="btn btn-primary" style="float:right;margin-top:15px;" />
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Resultados
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.resultData.data)
+        {
+            <tr>
+                <td>
+                    Team @Html.DisplayFor(modelItem => item.team1) scored @Html.DisplayFor(modelItem => item.totalgoalsyear) goals in @Html.DisplayFor(modelItem => item.year)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
